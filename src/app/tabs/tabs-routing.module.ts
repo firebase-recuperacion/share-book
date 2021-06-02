@@ -1,36 +1,55 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import {
+  canActivate,
+  redirectUnauthorizedTo,
+  redirectLoggedInTo,
+} from '@angular/fire/auth-guard';
+
+const redirectUnauthorizedToLogin = () => {
+  return redirectUnauthorizedTo(['/login']);
+};
+
+const redirectLoggedInToList = () => {
+  return redirectLoggedInTo(['/']);
+};
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        path: 'list',
+        loadChildren: () =>
+          import('../list/list.module').then((m) => m.ListPageModule),
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        path: 'books',
+        loadChildren: () =>
+          import('../books/books.module').then((m) => m.BooksPageModule),
+        ...canActivate(redirectUnauthorizedToLogin),
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'login',
+        loadChildren: () =>
+          import('../login/login.module').then((m) => m.LoginPageModule),
+        ...canActivate(redirectLoggedInToList),
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('../profile/profile.module').then((m) => m.ProfilePageModule),
+        ...canActivate(redirectUnauthorizedToLogin),
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
-        pathMatch: 'full'
-      }
-    ]
+        redirectTo: '/list',
+        pathMatch: 'full',
+      },
+    ],
   },
-  {
-    path: '',
-    redirectTo: '/tabs/tab1',
-    pathMatch: 'full'
-  }
 ];
 
 @NgModule({

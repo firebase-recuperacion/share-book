@@ -1,0 +1,33 @@
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Ingresar</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-segment (ionChange)="segmentChanged($event)" value="{{ segment }}">
+        <ion-segment-button value="login">
+          <ion-label>Iniciar sesión</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="signup">
+          <ion-label>Registrarse</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-row>
+    <ng-container *ngIf="segment === 'login'">
+      <ion-row>
+        <ion-col>
+          <app-login-form></app-login-form>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+    <ng-container *ngIf="segment === 'signup'">
+      <ion-row>
+        <ion-col>
+          <app-signup-form></app-signup-form>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+  </ion-grid>
+</ion-content>

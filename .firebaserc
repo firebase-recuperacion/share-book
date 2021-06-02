@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "share-book-6bf3b": {
+      "hosting": {
+        "app": [
+          "share-book-6bf3b"
+        ]
+      }
+    }
+  }
+}

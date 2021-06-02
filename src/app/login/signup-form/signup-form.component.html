@@ -1,0 +1,19 @@
+<ion-card>
+  <ion-card-header>
+    Ingrese los siguientes datos para registrarse.
+  </ion-card-header>
+  <ion-card-content>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <ion-input formControlName="email" placeholder="Email"></ion-input>
+      <ion-input formControlName="password" placeholder="Contraseña" type="password"></ion-input>
+      <ion-input formControlName="name" placeholder="Nombre"></ion-input>
+      <ion-input formControlName="phone" placeholder="Teléfono"></ion-input>
+      <ion-input formControlName="address" placeholder="Dirección"></ion-input>
+      <ion-button color="primary" expand="block" type="submit">
+        {{ type === 'update' 
+        ? 'Actualizar perfil'
+        : 'Registrarse' }}
+      </ion-button>
+    </form>
+  </ion-card-content>
+</ion-card>
