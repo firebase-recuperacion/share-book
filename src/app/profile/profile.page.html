@@ -5,4 +5,9 @@
     </ion-toolbar>
   </ion-header>
   <app-signup-form [type]="formType"></app-signup-form>
+  <ion-card>
+    <ion-card-content>
+      <ion-button expand="block" (click)="logout()">Cerrar sesión</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

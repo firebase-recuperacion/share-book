@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'books',
     loadChildren: () => import('./books/books.module').then( m => m.BooksPageModule)
   },
+  {
+    path: 'book',
+    loadChildren: () => import('./book/book.module').then( m => m.BookPageModule)
+  },
 ];
 @NgModule({
   imports: [

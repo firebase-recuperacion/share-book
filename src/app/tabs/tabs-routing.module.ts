@@ -32,6 +32,12 @@ const routes: Routes = [
         ...canActivate(redirectUnauthorizedToLogin),
       },
       {
+        path: 'book',
+        loadChildren: () =>
+          import('../book/book.module').then((m) => m.BookPageModule),
+        ...canActivate(redirectUnauthorizedToLogin),
+      },
+      {
         path: 'login',
         loadChildren: () =>
           import('../login/login.module').then((m) => m.LoginPageModule),

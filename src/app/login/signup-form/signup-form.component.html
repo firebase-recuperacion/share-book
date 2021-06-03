@@ -1,6 +1,8 @@
 <ion-card>
   <ion-card-header>
-    Ingrese los siguientes datos para registrarse.
+    {{ type === 'update'
+    ? 'Datos de perfil'
+    : 'Ingrese sus datos para regisrarse' }}
   </ion-card-header>
   <ion-card-content>
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">

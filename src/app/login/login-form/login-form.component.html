@@ -5,7 +5,7 @@
   <ion-card-content>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <ion-input formControlName="email" placeholder="Email"></ion-input>
-      <ion-input formControlName="password" placeholder="Contraseña"></ion-input>
+      <ion-input formControlName="password" placeholder="Contraseña" type="password"></ion-input>
       <ion-button color="primary" expand="block" type="submit">Ingresar</ion-button>
     </form>
   </ion-card-content>

@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AuthService } from './login/auth.service';
 import { LoadingController } from '@ionic/angular';
+import { AlertService } from './alert.service';
 
 @Component({
   selector: 'app-root',
@@ -16,27 +17,19 @@ export class AppComponent {
     public loadingController: LoadingController,
     private auth: AuthService,
     public zone: NgZone,
+    public alert: AlertService
   ) {}
 
-  loading: HTMLIonLoadingElement;
-
-  async presentLoading() {
-    this.loading = await this.loadingController.create({
-      message: 'Cargando...',
-    });
-    await this.loading.present();
-  }
-
   ngOnInit() {
-    this.presentLoading();
+    this.alert.presentLoading();
     this.firebaseAuth.onAuthStateChanged(async (user) => {
       this.auth.currentUser$.next(user);
       if (user) {
-        this.loading.dismiss();
+        this.alert.loading.dismiss();
         this.zone.run(() => {});
       }
       setTimeout(() => {
-        this.loading.dismiss();
+        this.alert.loading.dismiss();
       }, 1000);
     });
   }

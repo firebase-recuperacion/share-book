@@ -1,0 +1,32 @@
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="books" text="Atrás"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card>
+    <ion-card-header>
+      {{ bookData ? 'Actualizar libro' : 'Registrar libro' }}
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+        <ion-input formControlName="title" placeholder="Título"></ion-input>
+        <ion-input formControlName="editorial" placeholder="Editorial"></ion-input>
+        <ion-input formControlName="category" placeholder="Categoría"></ion-input>
+        <ion-input formControlName="pickupAddress" placeholder="Dirección de recogida"></ion-input>
+        <ion-input formControlName="photo" placeholder="Subir foto" (click)="takePicture()"></ion-input>
+        <img *ngIf="photoWebPath" [src]="this.sanitizer.bypassSecurityTrustResourceUrl(photoWebPath)">
+        <ion-button color="primary" expand="block" type="submit">
+          {{ bookData
+          ? 'Actualizar libro'
+          : 'Registrar' }}
+        </ion-button>
+        <ion-button *ngIf="bookData" color="primary" expand="block" type="button" (click)="onDelete()">
+          Eliminar
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -2,7 +2,43 @@
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Libros</ion-title>
+      <ion-buttons slot="end" [hidden]="(auth.currentUser$ | async)">
+        <ion-button routerLink="/login">Ingresar / Registrarse</ion-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
-
+  <ion-grid>
+    <ion-row>
+      <ion-item>
+        <ion-label position="floating">Buscar</ion-label>
+        <ion-input (input)="filterBooks($event)"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row *ngIf="(books$ | async)?.length === 0">
+      <ion-card style="width: 100%">
+        <ion-card-content>
+          No hay libros para reservar.
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+    <ion-row *ngFor="let book of books$ | async; index as i">
+      <ion-card style="width: 100%">
+        <ion-card-header>
+          <div class="imgHeader">
+            <img [src]="book.photo" />
+          </div>
+          <ion-card-subtitle>{{ book.category }}</ion-card-subtitle>
+          <ion-card-title>{{ book.title }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Dirección de recogida: {{ book.pickupAddress }}
+          <br>
+          Dueño: {{ book.ownerName }}
+          <br>
+          <ion-button expand="block" (click)="onReserve(book)" [hidden]="!(auth.currentUser$ | async)">Reservar
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
 </ion-content>

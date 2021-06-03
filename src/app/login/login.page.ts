@@ -9,7 +9,7 @@ import { AlertController } from '@ionic/angular';
 export class LoginPage implements OnInit {
   constructor(public alertController: AlertController) {}
 
-  segment: string = 'signup';
+  segment: string = 'login';
 
   ngOnInit() {}
 
