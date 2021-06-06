@@ -27,7 +27,6 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {}
 
   async onSubmit() {
-    await this.alert.presentLoading();
     if (this.loginForm.status === 'INVALID') {
       await this.alert.present({
         header: 'Error',
@@ -36,12 +35,14 @@ export class LoginFormComponent implements OnInit {
       });
       return;
     }
+    await this.alert.presentLoading();
     try {
       const { email, password } = this.loginForm.value;
-      this.firebaseAuth.signInWithEmailAndPassword(email, password);
+      await this.firebaseAuth.signInWithEmailAndPassword(email, password);
       this.router.navigate(['/']);
       this.alert.loading.dismiss();
     } catch (err) {
+      await this.alert.loading.dismiss();
       await this.alert.present({
         header: 'Error',
         message: err.message,

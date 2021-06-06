@@ -1,12 +1,10 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Mis libros</ion-title>
-      <ion-buttons slot="end">
-        <ion-button (click)="openRegisterBook()">Registrar libro</ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar>
+    <ion-title size="large">Mis libros</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openRegisterBook()">Registrar libro</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
   <ion-grid>
     <ion-row>
       <ion-segment (ionChange)="segmentChanged($event)" value="{{ segment }}">

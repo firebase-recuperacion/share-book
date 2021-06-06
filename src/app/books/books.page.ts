@@ -48,6 +48,7 @@ export class BooksPage {
     const result = [];
     try {
       const { docs } = await booksRef.get().toPromise();
+      await this.alert.loading.dismiss();
       for await (let doc of docs) {
         const storageRef = this.fireStorage.ref(`books/${doc.id}`);
         const photoObservable = await storageRef.getDownloadURL();
@@ -64,8 +65,10 @@ export class BooksPage {
         }
         result.push({ ...data, photo: photoUrl, uid: doc.id, reservedName });
       }
-      await this.alert.loading.dismiss();
       this.books$.next(result);
+      setTimeout(async () => {
+        await this.alert.loading.dismiss();
+      }, 200);
     } catch (err) {
       await this.alert.loading.dismiss();
       await this.alert.present({

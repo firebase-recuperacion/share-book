@@ -1,12 +1,10 @@
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Libros</ion-title>
-      <ion-buttons slot="end" [hidden]="(auth.currentUser$ | async)">
-        <ion-button routerLink="/login">Ingresar / Registrarse</ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-toolbar>
+    <ion-title size="large">Libros</ion-title>
+    <ion-buttons slot="end" [hidden]="(auth.currentUser$ | async)">
+      <ion-button routerLink="/login">Ingresar / Registrarse</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
   <ion-grid>
     <ion-row>
       <ion-item>

@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -92,9 +91,11 @@ export class ListPage implements OnInit {
 
   filterBooks(event) {
     const value = event.target.value.toLowerCase();
+    console.log(value)
     this.books$.next(
       this.books$.value.filter((item) => {
         return (
+          item.ownerName.toLowerCase().includes(value) ||
           item.title.toLowerCase().includes(value) ||
           item.category.toLowerCase().includes(value)
         );

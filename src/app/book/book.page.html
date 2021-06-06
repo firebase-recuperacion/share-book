@@ -1,11 +1,9 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="books" text="Atrás"></ion-back-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="books" text="Atrás"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
   <ion-card>
     <ion-card-header>
       {{ bookData ? 'Actualizar libro' : 'Registrar libro' }}
